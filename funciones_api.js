@@ -1,25 +1,3 @@
-/*
-
-8 funciones para simular una API REST.
-o getUser, toma un nombre de usuario y lo devuelve si existe.
-o getUsers, devuelve todos los usuarios existentes
-o addUser, agrega un nuevo usuario a la matriz de usuarios y devuelve el usuario creado, todos los usuarios en nueva matriz y el usuario creado
-o removeUserByIndex, toma un índice y, si lo encuentra, elimina el elemento del matriz, devuelve el elemento eliminado y la nueva matriz.
-o removeLastUser, elimina el último elemento de la matriz, devuelve el elemento eliminado elemento y la nueva matriz.
-o removeFirstUser, elimina el primer elemento de la matriz, devuelve el elemento eliminado elemento y la nueva matriz.
-o updateUserByIndex, toma el índice y el nuevo valor, si el índice existe, reemplácelo el elemento con el nuevo valor.
-o getUsersSize, devuelve el número de usuarios en la matriz.
-
-• Las respuestas deben tener la siguiente estructura:
-o Debe ser una estructura Objeto/JSON/Diccionario/Mapa (clave:valor) con lo siguiente atributos:
-▪ código (el código de estado de la respuesta)
-▪ cuerpo (el cuerpo de la respuesta)
-▪ msg (un mensaje informativo)
-o Debes utilizar los códigos vistos en las clases.
-o Es obligatorio el uso de cláusulas de devolución anticipada/guardia.
-o Debes crear una función para formatear tus respuestas y validar todas las posibles escenarios.
-
-*/ 
 
 const users = ["Juan", "Pedro", "Pablo", "Maria", "Luis", "Ana", "Lucia", "Carlos", "Jose", "Marta"];
 //getUser, toma un nombre de usuario y lo devuelve si existe.
