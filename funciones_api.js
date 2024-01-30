@@ -1,4 +1,3 @@
-
 const users = ["Erika", "Jessica", "America", "Angelica", "Ricardo", "Emilio"];
 
 function sendReponse(code, body = null) {
@@ -73,7 +72,10 @@ function addUser(username) {
 console.log(addUser("Corpus"));
 console.log("--------------------");
 
-console.log("4. removeUserByIndex, takes an index and, if found, removes the element from the array, it returns the deleted element and the new array.");
+console.log("4. removeUserByIndex, takes an index and, if found, removes the element from the array");
+//it returns the deleted element and the new array.");
+let index = 2;
+//console.log("deleted element: ", users[index]);
 function removeUserByIndex(index) {
     let finduser = users[index];
     if (finduser) {
@@ -83,10 +85,13 @@ function removeUserByIndex(index) {
         return sendReponse(404);
     }
 }
-console.log(removeUserByIndex(2));
+let result = removeUserByIndex(index);
+//console.log(result, "new array: ", result.body, "deleted element: ", users[index]);
+console.log(result);
 console.log("--------------------");
 
-console.log("5. removeLastUser, removes the last element from the array, it returns the deleted element and the new array.");
+console.log("5. removeLastUser, removes the last element from the array");
+//it returns the deleted element and the new array.");
 function removeLastUser() {
     let lastuser = users.pop();
     return sendReponse(200, users);
@@ -94,7 +99,8 @@ function removeLastUser() {
 console.log(removeLastUser());
 console.log("--------------------");
 
-console.log("6. removeFirstUser, removes the first element from the array, it returns the deleted element and the new array.");
+console.log("6. removeFirstUser, removes the first element from the array");
+//, it returns the deleted element and the new array.");
 function removeFirstUser() {
     let firstuser = users.shift();
     return sendReponse(200, users);
@@ -107,7 +113,7 @@ function updateUserByIndex(index, username) {
     let finduser = users[index];
     if (finduser) {
         users[index] = username;
-        return sendReponse(200, users);
+        return sendReponse(301, users);
     } else {
         return sendReponse(404);
     }
