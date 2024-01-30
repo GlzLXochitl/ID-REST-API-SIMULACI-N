@@ -1,15 +1,15 @@
 // Type: JavaScript
 // Description: REST API Simulation.
 
-const users = ["Erika", "Jessica", "America", "Angelica", "Ricardo", "Emilio"]; // Array of users
+const users = ["Erika", "Jessica", "America", "Angelica", "Ricardo", "Emilio"];
 
 function sendReponse(code, body = null) {
     const response = {
       code,
       body,
-    }; // Response object
+    };
     
-    switch (code) { // Switch to return the message of the status code
+    switch (code) {
         case 101:
             response.msg = "Continue";
             break;
@@ -43,11 +43,11 @@ function sendReponse(code, body = null) {
         default:
             response.msg = "Unknown status code";
     }
-    return response; // Return the response object
+    return response;
 }
 
-console.log("1. getUser, takes one username and return it if exists."); // Function to get a user by username
-function getUser(username) { // Function to get a user by username
+console.log("1. getUser, takes one username and return it if exists.");
+function getUser(username) {
     let finduser = users.find(user => user === username);
     if (finduser) {
         return sendReponse(200, finduser);
@@ -56,74 +56,78 @@ function getUser(username) { // Function to get a user by username
     }
 
 }
-console.log(getUser("Ricardo")); // Test the function
+console.log(getUser("Ricardo"));
 console.log(getUser("Corpus"));
-console.log("--------------------"); 
+console.log("--------------------");
 
-console.log("2. getUsers, return all existing users"); // Function to get all users
-function getUsers() { // Function to get all users
+console.log("2. getUsers, return all existing users");
+function getUsers() {
     return sendReponse(200, users);
 }
-console.log(getUsers()); // Test the function
+console.log(getUsers());
 console.log("--------------------");
 
-console.log("3. addUser, adds a new user to the users array and return the user created, all users in new array and the user created"); // Function to add a new user
-function addUser(username) { // Function to add a new user
+console.log("3. addUser, adds a new user to the users array and return the user created, all users in new array and the user created");
+function addUser(username) {
     users.push(username);
-    return sendReponse(201, users); // Return the new array
+    return sendReponse(201, users);
 }
-console.log(addUser("Corpus")); // Test the function
+console.log(addUser("Corpus"));
 console.log("--------------------");
 
-console.log("4. removeUserByIndex, takes an index and, if found, removes the element from the array"); // Function to remove a user by index
-let index = 2; // Index to remove
-function removeUserByIndex(index) { // Function to remove a user by index
+console.log("4. removeUserByIndex, takes an index and, if found, removes the element from the array");
+//it returns the deleted element and the new array.");
+let index = 2;
+//console.log("deleted element: ", users[index]);
+function removeUserByIndex(index) {
     let finduser = users[index];
     if (finduser) {
-        users.splice(index, 1); // Remove the user by index
-        return sendReponse(200, users); 
+        users.splice(index, 1);
+        return sendReponse(200, users);
     } else {
         return sendReponse(404);
     }
 }
-let result = removeUserByIndex(index); // Test the function
-
-console.log(result); // Test the function
+let result = removeUserByIndex(index);
+//console.log(result, "new array: ", result.body, "deleted element: ", users[index]);
+console.log(result);
 console.log("--------------------");
 
-console.log("5. removeLastUser, removes the last element from the array"); // Function to remove the last user
-function removeLastUser() { // Function to remove the last user
+console.log("5. removeLastUser, removes the last element from the array");
+//it returns the deleted element and the new array.");
+function removeLastUser() {
     let lastuser = users.pop();
     return sendReponse(200, users);
 }
-console.log(removeLastUser()); // Test the function
+console.log(removeLastUser());
 console.log("--------------------");
 
-console.log("6. removeFirstUser, removes the first element from the array"); // Function to remove the first user
-function removeFirstUser() { // Function to remove the first user
+console.log("6. removeFirstUser, removes the first element from the array");
+//, it returns the deleted element and the new array.");
+function removeFirstUser() {
     let firstuser = users.shift();
-    return sendReponse(200, users); // Return the new array
+    return sendReponse(200, users);
 }
-console.log(removeFirstUser()); // Test the function
+console.log(removeFirstUser());
 console.log("--------------------");
 
-console.log("7. updateUserByIndex, takes the index and the new value, if index exists then replace the element with the new value."); // Function to update a user by index
-function updateUserByIndex(index, username) { // Function to update a user by index
-    let finduser = users[index]; // Find the user by index
+console.log("7. updateUserByIndex, takes the index and the new value, if index exists then replace the element with the new value.");
+function updateUserByIndex(index, username) {
+    let finduser = users[index];
     if (finduser) {
         users[index] = username;
-        return sendReponse(301, users); // Return the new array
+        return sendReponse(301, users);
     } else {
         return sendReponse(404);
     }
 }
-console.log(updateUserByIndex(2, "Corpus")); // Test the function
+console.log(updateUserByIndex(2, "Corpus"));
 console.log("--------------------");
 
-console.log("8. getUsersSize, return the number of users in the array."); // Function to get the number of users
-function getUsersSize() { // Function to get the number of users
-    return sendReponse(200, users.length); // Return the number of users
+console.log("8. getUsersSize, return the number of users in the array.");
+function getUsersSize() {
+    return sendReponse(200, users.length);
 }
-console.log(getUsersSize()); // Test the function
-console.log("--------------------"); // Test the function
+console.log(getUsersSize());
+console.log("--------------------");
 

@@ -1,4 +1,4 @@
 GONZALEZ LEOS XOCHITL.
 
 
-v1.0Alpha of ID-REST-API-SIMULATION-N finalized
+v1.2Alpha of ID-REST-API-SIMULATION-N in process
