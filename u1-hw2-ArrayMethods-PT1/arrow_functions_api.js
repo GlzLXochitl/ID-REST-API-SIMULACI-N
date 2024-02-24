@@ -125,4 +125,3 @@ const getUsersSize = () => { // Function to get the number of users
 }
 console.log(getUsersSize()); // Test the function
 console.log("--------------------");
-
