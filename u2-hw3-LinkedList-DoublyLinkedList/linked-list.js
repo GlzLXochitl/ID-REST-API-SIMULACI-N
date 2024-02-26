@@ -11,9 +11,9 @@ class LinkedList {
         this.tail = null;
     }
 
-    append(element) {     // agrega un nuevo nodo al final de la lista 
+    append(element) {     // adds a new node to the end of the list
         if (!element) {
-            return "There´s no data";
+            return "There´s no data\n";
         }
 
         const node = new Node(element);
@@ -27,9 +27,9 @@ class LinkedList {
         }
     }
 
-    prepend(element) {        //agrega un nuevo nodo al principio de la lista
+    prepend(element) {        //adds a new node to the top of the list
         if (!element) {
-            return "There´s no data";
+            return "There´s no data\n";
         }
 
         const node = new Node(element);
@@ -43,9 +43,9 @@ class LinkedList {
         }
     }
 
-    insertAfterNode(node, element) {    //inserta un nuevo nodo con un valor dado después de un nodo existente con un valor dado en la lista 
+    insertAfterNode(node, element) {    //inserts a new node with a given value after an existing node with a given value in the list
         if (!node || !element) {
-            return "Node and element are mandatory";
+            return "Node and element are mandatory\n";
         }
 
         const newNode = new Node(element);
@@ -57,18 +57,18 @@ class LinkedList {
                 current.next = newNode;
                 if (current === this.tail) {
                     this.tail = newNode;
-                    return 'The element was appended and it is the tail';
+                    return 'The element was appended and it is the tail\n';
                 };
-                return 'The element was appended';
+                return 'The element was appended\n';
             }
             current = current.next;
         }
-        return 'The node doesn´t exist'
+        return 'The node doesn´t exist\n'
     }
 
-    traverse() {     //recorre la lista enlazada y imprime cada nodo en la consola. Si la lista está vacía, devuelve la cadena "There´s no data"
+    traverse() {     //traverses the linked list and prints each node to the console. If the list is empty, it returns the string "There's no data".
         if (!this.head) {
-            return "There´s no data";
+            return "There´s no data\n";
         }
 
         let currentValue = this.head;
@@ -80,35 +80,35 @@ class LinkedList {
         }
     }
 
-    deleteNode(element) { //elimina un nodo con un valor dado de la lista
+    deleteNode(element) { //deletes a node with a given value from the list
         if (!element || !this.head) {
-            return "No hay parametro o lista";
+            return "No parameter or list\n";
         }
         if (this.head.data === element) {
             this.head = this.head.next;
             if (this.head === null) {
                 this.tail = null;
             }
-            return "El elemento indicado era la cabeza";
+            return "The indicated element was the head\n";
         }
         let current = this.head;
         while (current.next) {
             if (current.next.data === element) {
                 if (current.next === this.tail) {
                     this.tail = current;
-                    return "El elemento ingresado se ha borrado y era la cola";
+                    return "The entered item was deleted and was the queue\n";
                 }
                 current.next = current.next.next;
-                return "Elemento borrado";
+                return "Element deleted\n";
             }
             current = current.next;
         }
-        return "Elemento no encontrado";
+        return "Item not found\n";
     }
 
-    deleteHead(){    //elimina el primer nodo
+    deleteHead(){    //deletes the first node
         if (!this.head) {
-            return 'There´s no head';
+            return 'There´s no head\n';
         }
 
         this.head = this.head.next;
@@ -120,13 +120,13 @@ class LinkedList {
 
     deleteTail() {
         if (!this.head) { 
-            return 'There´s no data';
+            return 'There´s no data\n';
         }
 
         if (this.head === this.tail) {
             this.head = null;
             this.tail = null;
-            return 'The tail was removed and it was also head';
+            return 'The tail was removed and it was also head\n';
         }
 
         let current = this.head;
@@ -135,7 +135,7 @@ class LinkedList {
             if (current.next === this.tail) { 
                 current.next = null;
                 this.tail = current; 
-                return 'The tail was removed';
+                return 'The tail was removed\n';
             }
             current = current.next;
         }
@@ -146,53 +146,53 @@ class LinkedList {
 const linkedList = new LinkedList();
 
 
-console.log("\nAGREGAR UN NUEVO NODO AL FINAL DE LA LISTA\n");
+console.log("\n --> ADD A NEW NODE AT THE END OF THE LIST\n");
 
-//append(element)        // agrega un nuevo nodo al final de la lista 
+//append(element)        // adds a new node to the end of the list
 linkedList.append(20);
 linkedList.append(30);
 linkedList.append(40);
 linkedList.append(60);
 
-//traverse()                 //recorre la lista enlazada y imprime cada nodo en la consola. Si la lista está vacía, devuelve la cadena "There´s no data"
+//traverse()                 //traverses the linked list and prints each node to the console. If the list is empty, it returns the string "There's no data".
 linkedList.traverse();
 console.log("\n**********************************\n");
 
-console.log("AGREGAR UN NODO AL PRINCIPIO DE LA LISTA\n");
+console.log(" --> ADD A NODE TO THE TOP OF THE LIST\n");
 
-//prepend(element)         //agrega un nuevo nodo al principio de la lista
+//prepend(element)         //adds a new node to the top of the list
 linkedList.prepend(10);
 
 linkedList.traverse();
 console.log("\n**********************************\n");
 
-console.log("AGREGAR UN NUEVO NODO CON UN VALOR DADO DESPUES DE UN NODO EXISTENTE CON UN VALOR DADO EN LA LISTA\n");
+console.log(" --> ADD A NEW NODE WITH A GIVEN VALUE AFTER AN EXISTING NODE WITH A GIVEN VALUE IN THE LIST\n");
 
 //insertAfterNode(node, element)
-console.log(linkedList.insertAfterNode(40, 50));    //inserta un nuevo nodo con un valor dado después de un nodo existente con un valor dado en la lista 
+console.log(linkedList.insertAfterNode(40, 50));    //inserts a new node with a given value after an existing node with a given value in the list
 
 linkedList.traverse();
 console.log("\n**********************************\n");
 
-console.log("ELIMINA UN NODO CON UN VALOR DADO DE LA LISTA\n");
+console.log(" --> DELETES A NODE WITH A GIVEN VALUE FROM THE LIST\n");
 
-//deleteNode(element)          //elimina un nodo con un valor dado de la lista
+//deleteNode(element)          //deletes a node with a given value from the list
 linkedList.deleteNode(20);
 
 linkedList.traverse();
 console.log("\n**********************************\n");
 
-console.log("ELIMINA EL PRIMER NODO\n");
+console.log(" --> DELETES THE FIRST NODE\n");
 
-//deleteHead()                //elimina el primer nodo
+//deleteHead()                //deletes the first node
 linkedList.deleteHead();
 
 linkedList.traverse();
 console.log("\n**********************************\n");
 
-console.log("ELIMINA EL ULTIMO NODO\n");
+console.log(" --> DELETES THE LAST NODE\n");
 
-//deleteTail()                //elimina el último nodo
+//deleteTail()                //deletes the last node
 linkedList.deleteTail();
 
 linkedList.traverse();
