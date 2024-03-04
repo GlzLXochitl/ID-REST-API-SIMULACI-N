@@ -12,7 +12,7 @@ class DoubleLinkedList {
         this.tail = null;
     }
 
-    append(element) {     // adds a new node to the end of the list
+    append(element) {     
         if (!element) {
             return "There´s no data\n";
         }
@@ -28,7 +28,7 @@ class DoubleLinkedList {
         }
     }
 
-    prepend(element) {        //adds a new node to the top of the list
+    prepend(element) {      
         if (!element) {
             return "There´s no data\n";
         }
@@ -44,7 +44,7 @@ class DoubleLinkedList {
         }
     }
 
-    insertAfterNode(node, element) {    //inserts a new node with a given value after an existing node with a given value in the list
+    insertAfterNode(node, element) {   
         if (!node || !element) {
             return "Node and element are mandatory\n";
         }
@@ -67,31 +67,33 @@ class DoubleLinkedList {
         return 'The node doesn´t exist\n'
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     insertBeforeNode(node, element) {    //inserts a new node with a given value before an existing node with a given value in the list
         if (!node || !element) {
             return "Node and element are mandatory\n";
         }
-
+    
         const newNode = new Node(element);
-
+    
+        if (node === this.head.data) { 
+            newNode.next = this.head;
+            this.head = newNode;
+            return 'The element was prepended and it is the head\n';
+        }
+    
         let current = this.head;
-        while (current) {
-            if (current.data === node) {
+        while (current.next) {
+            if (current.next.data === node) {
                 newNode.next = current.next;
                 current.next = newNode;
-                if (current === this.tail) {
-                    this.tail = newNode;
-                    return 'The element was appended and it is the tail\n';
-                };
-                return 'The element was appended\n';
+                return 'The element was inserted before the specified node\n';
             }
             current = current.next;
         }
-        return 'The node doesn´t exist\n'
+    
+        return 'The node doesn´t exist\n';
     }
 
-    traverse() {     //traverses the linked list and prints each node to the console. If the list is empty, it returns the string "There's no data".
+    traverse() {    
         if (!this.head) {
             return "There´s no data\n";
         }
@@ -105,22 +107,27 @@ class DoubleLinkedList {
         }
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    travelReverse() {     //Show the entire current list in reverse
-        if (!this.head) {
+    travelReverse() {     // Display the entire current list in reverse order
+        // Traverse the linked list from beginning to end, but instead of printing each node immediately, we add it to an array nodes. Then, traverse the array in reverse order and print each node.
+
+        if (!this.head) {    // Check if the list is empty
             return "There´s no data\n";
         }
 
-        let currentValue = this.head;
+        let nodes = [];   // Create an empty array to store the nodes
+        let currentValue = this.head;    // Start from the head of the list
 
-        while (currentValue) {
-            console.log(currentValue);
-            currentValue = currentValue.next;
-            //console.log("\n");
+        while (currentValue) {   // Traverse the list
+            nodes.push(currentValue);   // Add the current node to the array
+            currentValue = currentValue.next;    // Move to the next node
+        }
+
+        for (let i = nodes.length - 1; i >= 0; i--) {  // Traverse the array in reverse order
+            console.log(nodes[i]);  // Print the node
         }
     }
 
-    deleteNode(element) { //deletes a node with a given value from the list
+    deleteNode(element) { 
         if (!element || !this.head) {
             return "No parameter or list\n";
         }
@@ -146,7 +153,7 @@ class DoubleLinkedList {
         return "Item not found\n";
     }
 
-    deleteHead(){    //deletes the first node
+    deleteHead(){   
         if (!this.head) {
             return 'There´s no head\n';
         }
@@ -187,19 +194,16 @@ const linkedList = new DoubleLinkedList();
 
 console.log("\n --> ADD A NEW NODE AT THE END OF THE LIST\n");
 
-//append(element)        // adds a new node to the end of the list
 linkedList.append(20);
 linkedList.append(30);
 linkedList.append(40);
 linkedList.append(60);
 
-//traverse()                 //traverses the linked list and prints each node to the console. If the list is empty, it returns the string "There's no data".
 linkedList.traverse();
 
 console.log("\n**********************************\n");
 console.log(" --> ADD A NODE TO THE TOP OF THE LIST\n");
 
-//prepend(element)         //adds a new node to the top of the list
 linkedList.prepend(10);
 
 linkedList.traverse();
@@ -207,23 +211,21 @@ linkedList.traverse();
 console.log("\n**********************************\n");
 console.log(" --> ADD A NEW NODE WITH A GIVEN VALUE AFTER AN EXISTING NODE WITH A GIVEN VALUE IN THE LIST\n");
 
-//insertAfterNode(node, element)
-console.log(linkedList.insertAfterNode(40, 50));    //inserts a new node with a given value after an existing node with a given value in the list
+console.log(linkedList.insertAfterNode(40, 50));   
 
 linkedList.traverse();
-/*
+
 console.log("\n**********************************\n");
 console.log(" --> ADD A NEW NODE WITH A GIVEN VALUE BEFORE AN EXISTING NODE WITH A GIVEN VALUE IN THE LIST\n");
 
 //insertBeforeNode(node, element)
-console.log(linkedList.insertBeforeNode(50, 40));    //inserts a new node with a given value before an existing node with a given value in the list
+console.log(linkedList.insertBeforeNode(50, 40));    //inserta un nuevo nodo con un valor dado antes de un nodo existente con un valor dado en la lista
 
 linkedList.traverse();
-*/
+
 console.log("\n**********************************\n");
 console.log(" --> DELETES A NODE WITH A GIVEN VALUE FROM THE LIST\n");
 
-//deleteNode(element)          //deletes a node with a given value from the list
 linkedList.deleteNode(20);
 
 linkedList.traverse();
@@ -231,7 +233,6 @@ linkedList.traverse();
 console.log("\n**********************************\n");
 console.log(" --> DELETES THE FIRST NODE\n");
 
-//deleteHead()                //deletes the first node
 linkedList.deleteHead();
 
 linkedList.traverse();
@@ -239,18 +240,19 @@ linkedList.traverse();
 console.log("\n**********************************\n");
 console.log(" --> DELETES THE LAST NODE\n");
 
-//deleteTail()                //deletes the last node
 linkedList.deleteTail();
 
 linkedList.traverse();
 
 console.log("\n**********************************\n");
-/*
 console.log(" --> SHOW THE ENTIRE CURRENT LIST IN REVERSE\n");
 
-linkedList.travelReverse();     //Show the entire current list in reverse
+linkedList.travelReverse();     //Show the entire current list upside down
 
 console.log("\n**********************************\n");
-*/
+
+
+
+
 
 
